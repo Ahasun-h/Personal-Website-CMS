@@ -1,0 +1,156 @@
+{% extends 'layout.html' %}
+
+<!-- description -->
+{% block description %} {{Setting.description}} {% endblock %}
+
+<!-- keywords -->
+{% block keywords %} {{Setting.keywords}} {% endblock %}
+
+<!-- author -->
+{% block author %} {{Setting.author}} {% endblock %}
+
+<!-- title -->
+{% block title %} {{Setting.Website_title}} {% endblock %}
+
+<!-- shortcut_icon -->
+{% load static %} {% block shortcut_icon %} {{Setting.favicon.url}} {% endblock %}
+
+<!-- apple-touch-icon -->
+{% load static %} {% block apple-touch-icon %} {{Setting.favicon.url}} {% endblock %}
+
+<!-- coustom_style -->
+{% block css %} {% for CustomCodes in CustomCode %} {% if CustomCodes.active == True %} {{CustomCodes.code}} {% endif %} {% endfor %} {% endblock %}
+
+<!-- Content -->
+{% block content %}
+
+<!-- PAGE -->
+<div id="page" class="hfeed site">
+
+    <!-- .site-main -->
+    <main id="main" class="site-main cd-main">
+        {% load static %} {% load thumbnail %}
+
+        <!-- site-middle -->
+        <div class="site-middle">
+
+            <div class="layout-medium">
+                <div id="primary" class="content-area">
+
+                    <!-- site-content -->
+                    <div id="content" class="site-content" role="main">
+                        <!-- .page-single -->
+                        <div class="page-single page-layout">
+
+
+                            <!-- .hentry -->
+                            <article class="page hentry">
+
+                                <!-- .entry-header -->
+                                <header class="entry-header">
+                                    <h1 class="entry-title">Portfolio</h1>
+                                </header>
+                                <!-- .entry-header -->
+
+
+                                <!-- .entry-content -->
+                                <div class="entry-content">
+
+                                    <!--FILTERS-->
+                                    <ul id="filters" class="filters">
+                                        <li class="current">
+                                            <a href="#" data-filter="*">all</a>
+                                        </li>
+                                        {% for PortfolioCategorys in PortfolioCategory %}
+                                        <li>
+                                            <a href="#" data-filter=".{{PortfolioCategorys.category_class}}">{{PortfolioCategorys.name}}</a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                    <!--FILTERS-->
+
+                                    <!-- PORTFOLIO -->
+                                    <div class="portfolio-items media-grid masonry" data-layout="masonry" data-item-width="360">
+                                        {% for PortfolioItems in PortfolioItem %}
+                                        <!-- portfolio-item -->
+                                        <div class="media-cell {{PortfolioItems.category_class.category_class}} format-gallery hentry">
+                                            <div class="media-box">
+                                                <!-- <img src="{% static 'images/loader.gif' %}" data-src="{{PortfolioItems.image.url}}" alt="{{PortfolioItems.project_name}}}"> -->
+                                                <img src="{{PortfolioItems.image.url}}" alt="{{PortfolioItems.project_name}}}">
+                                                <div class="mask"></div>
+                                                <!-- lightbox - gallery -->
+                                                {% if PortfolioItems.link %}
+                                                <a href="{{PortfolioItems.link}}" target="_blank"></a>
+
+                                                {% else %}
+                                                <a href="{{PortfolioItems.image.url}}" class="lightbox" data-title="{{PortfolioItems.project_name}}"></a>
+                                                {% endif %}
+                                                <!-- lightbox - gallery -->
+                                            </div>
+                                            <div class="media-cell-desc">
+                                                <h3>{{PortfolioItems.project_name}}</h3>
+                                                <p class="category">{{PortfolioItems.category_class.name}}</p>
+                                            </div>
+                                        </div>
+                                        <!-- portfolio-item -->
+                                        {% endfor %}
+                                    </div>
+                                    <!-- .entry-content -->
+
+
+
+                            </article>
+                            <!-- .hentry -->
+
+
+                            </div>
+                            <!-- .page-single -->
+
+
+                        </div>
+                        <!-- site-content -->
+
+                    </div>
+                    <!-- primary -->
+
+                </div>
+                <!-- layout -->
+
+
+            </div>
+            <!-- site-middle -->
+
+
+            <!-- site-middle -->
+
+            <!-- .site-footer -->
+            <footer id="colophon" class="site-footer" role="contentinfo">
+
+                <!-- .site-info -->
+                <div class="site-info">
+                    <div class="textwidget">
+                        <p>{{Setting.copyright}}
+                        </p>
+                    </div>
+                </div>
+                <!-- .site-info -->
+
+            </footer>
+            <!-- .site-footer -->
+    </main>
+    <!-- .site-main -->
+
+    <!-- ALERT : used for contact form mail delivery alert -->
+    <div class="site-alert animated"></div>
+    </div>
+    <!-- PAGE -->
+
+    <a href="#" id="back-to-top" class="show">↑ <span>Scroll to top</span></a>
+    <!-- END:CONTENT  -->
+    {% endblock content %}
+
+    <!-- Social media Chat Button -->
+    {% block chatbutton %} {{ ChatButton|safe }} {% endblock %}
+
+    <!-- Coustom script -->
+    {% block script %} {% for CustomScripts in CustomScript %} {% if CustomScripts.active == True %} {{CustomScripts.code}} {% endif %} {% endfor %} {% endblock %}

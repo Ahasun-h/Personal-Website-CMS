@@ -1,0 +1,170 @@
+{% extends 'layout.html' %}
+
+<!-- description -->
+{% block description %} {{Setting.description}} {% endblock %}
+
+<!-- keywords -->
+{% block keywords %} {{Setting.keywords}} {% endblock %}
+
+<!-- author -->
+{% block author %} {{Setting.author}} {% endblock %}
+
+<!-- title -->
+{% block title %} {{Setting.Website_title}} {% endblock %}
+
+<!-- shortcut_icon -->
+{% load static %} {% block shortcut_icon %} {{Setting.favicon.url}} {% endblock %}
+
+<!-- apple-touch-icon -->
+{% load static %} {% block apple-touch-icon %} {{Setting.favicon.url}} {% endblock %}
+
+<!-- coustom_style -->
+{% block css %} {% for CustomCodes in CustomCode %} {% if CustomCodes.active == True %} {{CustomCodes.code}} {% endif %} {% endfor %} {% endblock %}
+
+<!-- Content -->
+{% block content %}
+
+<!-- PAGE -->
+<div id="page" class="hfeed site">
+
+    <!-- .site-main -->
+    <main id="main" class="site-main cd-main">
+
+
+        <!-- site-middle -->
+        <div class="site-middle">
+
+            <div class="layout-medium">
+                <div id="primary" class="content-area">
+                    {% load static %}
+
+                    <!-- site-content -->
+                    <div id="content" class="site-content" role="main">
+                        <!-- .page-single -->
+                        <div class="page-single page-layout">
+
+                            <!-- .hentry -->
+                            <article class="page hentry">
+
+                                <!-- .entry-header -->
+                                <header class="entry-header">
+                                    <h1 class="entry-title">Blog</h1>
+                                </header>
+                                <!-- .entry-header -->
+
+                                <!-- .entry-content -->
+                                <div class="entry-content">
+
+                                    <!-- LATEST POSTS -->
+                                    <div class="latest-posts media-grid masonry" data-layout="fitRows" data-item-width="360">
+
+                                        {% for BlogPosts in BlogPost %}
+                                        <!-- post -->
+                                        <article class="hentry media-cell post_article">
+
+                                            <div class="media-box">
+                                                <img src="{{BlogPosts.post_image.url}}" alt="post-image">
+                                                <div class="mask"></div>
+                                                <span class="media-date">
+                                            <span class="day">{{BlogPosts.post_date}}</span>
+                                                <!-- <span class="month">Jul</span> -->
+                                                </span>
+                                                <a class="blog-single" data-slug="blog_single" href="{% url 'post_details' BlogPosts.slug %}">{{BlogPosts.title}}</a>
+                                            </div>
+
+                                            <header class="media-cell-desc">
+                                                <span class="cat-links">
+                                            <a class="blog-single" data-slug="blog_single" href="{% url 'post_details' BlogPosts.slug %}" rel="category tag">{{BlogPosts.post_ctegory}}</a>
+                                        </span>
+                                                <h3>
+                                                    <a class="blog-single" data-slug="blog_single" href="{% url 'post_details' BlogPosts.slug %}">{{BlogPosts.title}}</a>
+                                                </h3>
+
+                                            </header>
+
+                                        </article>
+                                        <!-- post -->
+
+                                        {% endfor %}
+                                    </div>
+                                    <!-- LATEST POSTS -->
+
+
+                                    <!-- .navigation .pagination -->
+                                    <nav class="navigation pagination" role="navigation">
+
+                                        <h2 class="screen-reader-text">Posts navigation</h2>
+
+                                        <!-- .nav-links -->
+                                        <div class="nav-links">
+
+                                            <!-- <a class="page-numbers" href="#"><span class="meta-nav screen-reader-text">Page
+                                            </span>1</a>
+                                        <span class="page-numbers dots">…</span>
+                                        <a class="page-numbers" href="#"><span class="meta-nav screen-reader-text">Page
+                                            </span>4</a>
+                                        <span class="page-numbers current"><span class="meta-nav screen-reader-text">Page
+                                            </span>5</span>
+                                        <a class="page-numbers" href="#"><span class="meta-nav screen-reader-text">Page
+                                            </span>6</a>
+                                        <span class="page-numbers dots">…</span>
+                                        <a class="page-numbers" href="#"><span class="meta-nav screen-reader-text">Page
+                                            </span>8</a>
+                                        <a class="page-numbers next" href="#">Next</a> -->
+                                        </div>
+                                        <!-- .nav-links -->
+
+                                    </nav>
+                                    <!-- .navigation .pagination -->
+                                </div>
+                                <!-- .entry-content -->
+                            </article>
+                            <!-- .hentry -->
+                        </div>
+                        <!-- .page-single -->
+                    </div>
+                    <!-- site-content -->
+                </div>
+                <!-- primary -->
+            </div>
+            <!-- layout -->
+        </div>
+        <!-- site-middle -->
+
+        <!-- .site-footer -->
+        <footer id="colophon" class="site-footer" role="contentinfo">
+
+            <!-- .site-info -->
+            <div class="site-info">
+                <div class="textwidget">
+                    <p>{{Setting.copyright}}
+                    </p>
+                </div>
+            </div>
+            <!-- .site-info -->
+
+        </footer>
+        <!-- .site-footer -->
+
+    </main>
+    <!-- .site-main -->
+
+    <!-- ALERT : used for contact form mail delivery alert -->
+    <div class="site-alert animated"></div>
+
+
+
+
+</div>
+<!-- PAGE -->
+
+<a href="#" id="back-to-top" class="show">↑ <span>Scroll to top</span></a>
+
+<!-- content -->
+{% endblock content %}
+
+<!-- Social media Chat Button -->
+{% block chatbutton %} {{ ChatButton|safe }} {% endblock %}
+
+<!-- Coustom script -->
+{% block script %} {% for CustomScripts in CustomScript %} {% if CustomScripts.active == True %} {{CustomScripts.code}} {% endif %} {% endfor %} {% endblock %}

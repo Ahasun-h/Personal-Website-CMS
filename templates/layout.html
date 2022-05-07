@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="no-js one-page-layout sound-effects" data-audio-tick="audio/tick.mp3" data-click-ripple-animation="yes">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    <meta name="author" content="{% block author %}{% endblock %}">
+    <meta name="theme-color" content="#1755cf" />
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- FAV and TOUCH ICONS -->
+    <link rel="shortcut icon" href="{% block shortcut_icon %}{% endblock %}">
+    <link rel="apple-touch-icon" href="{% block apple-touch-icon %}{% endblock %}">
+
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="{% static 'css/fonts/jost/jost.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+
+    <!-- STYLES -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/nprogress/nprogress.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/jquery.magnific-popup/magnific-popup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fonts/fontello/css/fontello.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/768.css' %}">
+
+    <!-- INITIAL SCRIPTS -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    <!-- Coustom CSS -->
+    <style>
+    {% block css %}{% endblock %}
+    </style>
+    
+</head>
+
+
+
+<body>
+
+
+    <!-- Main Content-->
+    {% block content %} {% endblock content %}
+
+
+    <!-- Social media Chat Button -->
+    {% block chatbutton %} {% endblock chatbutton %}
+    
+
+
+
+    <!-- SCRIPTS -->
+    <script src="{% static 'js/tween-max.js' %}"></script>
+    <script src="{% static 'js/jquery-address.js' %}"></script>
+    <script src="{% static 'js/nprogress/nprogress.js' %}"></script>
+    <script src="{% static 'js/jquery-isotope.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.js' %}"></script>
+    <script src="{% static 'js/jquery-fitvids.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup/jquery-magnific-popup.js' %}"></script>
+    <script src="{% static 'js/jquery-easing.js' %}"></script>
+    <script src="{% static 'js/jquery-validate.js' %}"></script>
+    <script src="{% static 'js/resize-sensor.js' %}"></script>
+    <script src="{% static 'js/jquery-sticky-sidebar.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/unveil.js' %}"></script>
+    <script>
+        
+
+        {% block script %}{% endblock %}
+
+    </script>
+
+    
+
+
+</body>
+
+</html>

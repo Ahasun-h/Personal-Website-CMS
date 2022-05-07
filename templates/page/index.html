@@ -1,0 +1,249 @@
+{% extends 'layout.html' %}
+
+<!-- description -->
+{% block description %} {{Setting.description}} {% endblock %}
+
+<!-- keywords -->
+{% block keywords %} {{Setting.keywords}} {% endblock %}
+
+<!-- author -->
+{% block author %} {{Setting.author}} {% endblock %}
+
+<!-- title -->
+{% block title %} {{Setting.Website_title}} {% endblock %}
+
+<!-- shortcut_icon -->
+{% load static %} {% block shortcut_icon %} {{Setting.favicon.url}} {% endblock %}
+
+<!-- apple-touch-icon -->
+{% load static %} {% block apple-touch-icon %} {{Setting.favicon.url}} {% endblock %}
+
+<!-- coustom_style -->
+{% block css %} {% for CustomCodes in CustomCode %} {% if CustomCodes.active == True %} {{CustomCodes.code}} {% endif %} {% endfor %} {% endblock %}
+
+
+<!-- Content -->
+{% block content %}
+
+
+<!-- .home-wrap -->
+<div class="home-wrap">
+
+
+    <!-- HOME BG IMAGE -->
+    <div class="home-bg" style="background-image: url({{siteSetting.backround_image.url}})"></div>
+    <!-- HOME BG IMAGE -->
+
+
+    <!-- HOME BG LOGO -->
+    <div class="home-bg-logo">
+        <!-- <img src="static/images/home/icon-bg.svg" alt="icon" /> -->
+        <img src="{{siteSetting.symbol_image_big.url}}" alt="icon" />
+    </div>
+    <!-- HOME BG LOGO -->
+
+
+    <!-- .home-menu -->
+    <nav class="home-menu">
+        <!-- <a href="about.html" data-slug="about"> -->
+
+
+        {% if activePage.about_page == True %}
+        <a href="{% url 'about' %}" data-slug="about">
+            <span class="item-name">About</span>
+        </a>
+        {% else %}
+        <a href="{% url 'about' %}" data-slug="about" style="display: none;">
+            <span class="item-name">About</span>
+        </a>
+        {% endif %} {% if activePage.resume_page == True %}
+        <a href="{% url 'resume' %}" data-slug="resume">
+            <span class="item-name">Resume</span>
+        </a>
+        {% else %}
+        <a href="{% url 'resume' %}" data-slug="resume" style="display: none;">
+            <span class="item-name">Resume</span>
+        </a>
+        {% endif %} {% if activePage.portfolio_page == True %}
+        <a href="{% url 'portfolio' %}" data-slug="portfolio" id="portfolio-link">
+            <span class="item-name">Portfolio</span>
+        </a>
+        {% else %}
+        <a href="{% url 'portfolio' %}" data-slug="portfolio" id="portfolio-link" style="display: none;">
+            <span class="item-name">Portfolio</span>
+        </a>
+        {% endif %} {% if activePage.blog_page == True %}
+        <a href="{% url 'blog' %}" data-slug="blog">
+            <span class="item-name">Blog</span>
+        </a>
+        {% else %}
+        <a href="{% url 'blog' %}" data-slug="blog" style="display: none;">
+            <span class="item-name">Blog</span>
+        </a>
+        {% endif %} {% if activePage.contact_page == True %}
+        <a href="{% url 'contact' %}" data-slug="contact">
+            <span class="item-name">Contact</span>
+        </a>
+        {% else %}
+        <a href="{% url 'contact' %}" data-slug="contact" style="display: none;">
+            <span class="item-name">Contact</span>
+        </a>
+        {% endif %}
+
+
+    </nav>
+    <!-- .home-menu -->
+
+
+    <!-- .home-heading -->
+    <div class="home-heading">
+
+        <!-- .home-logo -->
+        <div class="home-logo">
+
+            <p class="home-job-title">{{siteSetting.owner_Profession}}</p>
+
+            <p class="home-marquee">
+                {{siteSetting.owner_moto_line}}
+            </p>
+
+            <i class="home-logo-left "><span>{{siteSetting.owner_Profession}}</span></i>
+            <i class="home-logo-center">
+                <span class="home-icon">
+                    <!-- <img src="static/images/home/icon.svg" alt="icon" /> -->
+                    <img src="{{siteSetting.symbol_image_small.url}}" alt="icon" />
+                   
+                </span>
+                <span class="home-text-container">
+                    <!-- <span class="home-text-container-placeholder">Jason Whallberg</span> -->
+                    <span class="home-text-container-placeholder">{{siteSetting.owner_name}}</span>
+                    
+                </span>
+                <!-- <span class="home-text">Jason Whallberg</span> -->
+                <span class="home-text">{{siteSetting.owner_name}}</span>
+            </i>
+            <i class="home-logo-right">
+                <!-- <span>Developer</span> -->
+            </i>
+
+        </div>
+        <!-- .home-logo -->
+
+    </div>
+    <!-- .home-heading -->
+
+
+    <!-- .home-social -->
+    <p class="home-social">
+        <!-- <a class="social-link facebook" href="#"></a>
+        <a class="social-link linkedin" href="#"></a>
+        <a class="social-link instagram" href="#"></a>
+        <a class="social-link twitter" href="#"></a>
+        <a class="social-link github" href="#"></a> -->
+
+        {% for socilMeadiLinksData in socilMeadiLinks %}
+        <a class="social-link {{socilMeadiLinksData.platform_name}}" href="{{socilMeadiLinksData.link}}" target="_blank"></a>
+        {% endfor %}
+    </p>
+    <!-- .home-social -->
+
+
+    <!-- .home-footer -->
+    <p class="home-footer">{{Setting.copyright}}</p>
+    <!-- .home-footer -->
+
+
+    <!-- FULL SCREEN TOGGLE -->
+    <div class="full-screen-wrap">
+        <div class="top-left"></div>
+        <div class="top-left-horiz"></div>
+        <div class="top-right"></div>
+        <div class="top-right-horiz"></div>
+        <div class="bottom-left"></div>
+        <div class="bottom-left-horiz"></div>
+        <div class="bottom-right"></div>
+        <div class="bottom-right-horiz"></div>
+    </div>
+    <!-- FULL SCREEN TOGGLE -->
+
+
+
+    <!-- REMOVE THIS MARKUP TO DISABLE BG AUDIO -->
+
+    <div class="bg-music-confirm">
+        <p>Autoplay Music?</p>
+        <p><a class="bg-music-yes">Yeah!</a> <a class="bg-music-no">Nope</a> </p>
+    </div>
+
+    <!-- HOME BG MUSIC -->
+    <!-- <div id="play-music" class="play-music">
+        <div id="music-animation" class="music-animation">
+            <span class="music-bar bar1"></span>
+            <span class="music-bar bar2"></span>
+            <span class="music-bar bar3"></span>
+            <span class="music-bar bar4"></span>
+            <span class="music-bar bar5"></span>
+        </div>
+        <div class="music-toggle" id="music-toggle"><a id="toggle" data-on-text="Music on"
+                data-off-text="Music off">Music off</a></div>
+    </div>
+
+    <audio id="bg-music" loop src="audio/music2.mp3"></audio> -->
+    <!-- HOME BG MUSIC -->
+
+    <!-- HOME LOGO -->
+    <div class="home-logo play-music">
+        <a href="#">
+            <img src="{{siteSetting.logo.url}}" alt="logo" />
+        </a>
+    </div>
+
+    <!-- HOME LOGO -->
+
+    <!-- REMOVE THIS MARKUP TO DISABLE BG AUDIO -->
+
+
+
+</div>
+<!-- .home-wrap -->
+
+
+
+
+<!-- .one-page-content-->
+<div class="one-page-content">
+
+    <a href="/" class="close-page">
+        <span class="close-text"></span>
+    </a>
+
+    <div class="content-wrap"></div>
+
+</div>
+<!-- .one-page-content-->
+
+
+<!-- page transition overlays -->
+<div class="overlay overlay-1"></div>
+<div class="overlay overlay-2"></div>
+<!-- page transition overlays -->
+
+
+
+
+
+<!-- PORTFOLIO SINGLE AJAX CONTENT CONTAINER -->
+<div class="p-overlay"></div>
+<div class="p-overlay"></div>
+
+
+{% endblock content %}
+<!-- content -->
+
+<!-- Social media Chat Button -->
+{% block chatbutton %} {{ ChatButton|safe }} {% endblock %}
+
+
+
+<!-- Coustom script -->
+{% block script %} {% for CustomScripts in CustomScript %} {% if CustomScripts.active == True %} {{CustomScripts.code}} {% endif %} {% endfor %} {% endblock %}

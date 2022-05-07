@@ -1,0 +1,424 @@
+{% extends 'layout.html' %}
+
+<!-- description -->
+{% block description %} {{Setting.description}} {% endblock %}
+
+<!-- keywords -->
+{% block keywords %} {{Setting.keywords}} {% endblock %}
+
+<!-- author -->
+{% block author %} {{Setting.author}} {% endblock %}
+
+<!-- title -->
+{% block title %} {{Setting.Website_title}} {% endblock %}
+
+<!-- shortcut_icon -->
+{% load static %} {% block shortcut_icon %} {{Setting.favicon.url}} {% endblock %}
+
+<!-- apple-touch-icon -->
+{% load static %} {% block apple-touch-icon %} {{Setting.favicon.url}} {% endblock %}
+
+<!-- coustom_style -->
+{% block css %} {% for CustomCodes in CustomCode %} {% if CustomCodes.active == True %} {{CustomCodes.code}} {% endif %} {% endfor %} {% endblock %}
+
+<!-- Content -->
+{% block content %}
+
+<!-- PAGE -->
+<div id="page" class="hfeed site" style="overflow: scroll;">
+
+    <!-- .site-main -->
+    <main id="main" class="site-main cd-main">
+
+
+
+
+
+        <!-- HEADER -->
+        <header id="masthead" class="header" role="banner">
+
+            <!-- header-wrap -->
+            <div class="header-wrap layout-full">
+
+                <img src="{{SiteSetting.backround_image.url}}" alt="profile-image">
+
+                <div class="home-heading">
+                    <div class="home-logo">
+
+                        <p class="home-job-title">{{SiteSetting.owner_Profession}}</p>
+
+                        <p class="home-marquee">
+                            {{SiteSetting.owner_moto_line}}
+                        </p>
+
+                        <!--<i class="home-logo-left "><span>Web</span></i>-->
+                        <i class="home-logo-center">
+                            <span class="home-icon">
+                                <img src="{{SiteSetting.symbol_image_small.url}}" alt="icon" />
+                            </span>
+                            <span class="home-text-container">
+                                <p class="home-text-container-placeholder">{{SiteSetting.owner_name}}</p>
+                            </span>
+                            <span class="home-text">{{SiteSetting.owner_name}}</span>
+                        </i>
+                        <!--<i class="home-logo-right"><span>Developer</span></i>-->
+                    </div>
+                </div>
+
+
+
+                <!-- HOME BG LOGO -->
+                <div class="home-bg-logo">
+                    <img src="{{SiteSetting.symbol_image_big.url}}" alt="icon" />
+                </div>
+                <!-- HOME BG LOGO -->
+
+
+                <!-- header-social -->
+                <div class="header-bottom">
+
+                    {% for socilMeadiLinksData in SocialMedia %}
+                    <a class="social-link {{socilMeadiLinksData.platform_name}}" href="{{socilMeadiLinksData.link}}" target="_blank"></a>
+                    {% endfor %}
+
+                </div>
+                <!-- header-social -->
+
+                <!-- NAV MENU -->
+                <nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+                    <div class="nav-menu menu-with-icons">
+                        <ul>
+                            <li><a class="home" href="{% url 'index' %}">Home</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- NAV MENU -->
+
+
+
+                <!-- SEARCH -->
+                <div class="header-search">
+                    <form role="search" method="get" class="search-form" action="#">
+                        <label>
+                            <span class="screen-reader-text">Search for:</span>
+                            <input type="search" class="search-field" placeholder="Enter Keyword" value="" name="s">
+                        </label>
+                        <input type="submit" class="search-submit" value="Search">
+                    </form>
+                </div>
+                <!-- SEARCH -->
+
+
+            </div>
+            <!-- header-wrap -->
+
+        </header>
+        <!-- HEADER -->
+
+
+
+
+
+
+        <!-- site-middle -->
+        <div class="site-middle" style="background-color: #fff;">
+
+            <div class="layout-fixed">
+                <div id="primary" class="content-area">
+
+                    <!-- site-content -->
+                    <div id="content" class="site-content" role="main">
+                        <!-- .blog-single -->
+                        <div class="blog-single page-layout">
+
+
+                            <!-- .hentry -->
+                            <article class="post type-post hentry">
+
+
+                                <!-- .entry-header -->
+                                <header class="entry-header">
+                                    <h1 class="entry-title">{{post.title}}</h1>
+
+                                    <!-- .entry-meta -->
+                                    <div class="entry-meta">
+                                        <span class="entry-date">
+                                        <time class="entry-date" datetime="2014-07-13T04:34:10+00:00">{{post.post_date}}</time>
+                                    </span>
+                                        <span class="comment-link"></span>
+                                        <a href="">|</a>
+                                        </span>
+                                        <span class="cat-links">
+                                        <a href="{% url 'post_details' post.slug %}" title="View all posts in Travel" rel="category tag">{{post.post_ctegory}}</a>
+                                    </span>
+                                        <!--<span class="edit-link">
+                                            <a class="post-edit-link" href="#">Edit</a>
+                                        </span>-->
+                                    </div>
+                                    <!-- .entry-meta -->
+
+                                </header>
+                                <!-- .entry-header -->
+
+                                <!-- .featured-image -->
+                                <div class="featured-image">
+                                    <img src="{{post.post_image.url}}" alt="{{post.post_ctegory}}">
+                                </div>
+                                <!-- .featured-image -->
+
+
+                                <!-- .entry-content -->
+                                <div class="entry-content">
+                                    {{post.body | safe}}
+                                </div>
+                                <!-- .entry-content -->
+
+
+
+
+                                <!-- .related-posts -->
+                                <div class="related-posts">
+
+                                    <!-- section-title -->
+                                    <div class="section-title center">
+                                        <h2>
+                                            <i>Related Posts</i>
+                                        </h2>
+                                    </div>
+                                    <!-- section-title -->
+
+
+                                    <!-- LATEST POSTS -->
+                                    <div class="latest-posts media-grid">
+
+
+
+
+                                        {% for RecentPosts in RecentPost %}
+                                        <!-- post -->
+                                        <article class="media-cell">
+
+                                            <div class="media-box">
+                                                <img src="{{RecentPosts.post_image.url}}" alt="post-image">
+                                                <div class="mask"></div>
+                                                <a href="#"></a>
+                                            </div>
+
+                                            <header class="media-cell-desc">
+                                                <h3>
+                                                    <a href="{% url 'post_details' RecentPosts.slug %}">{{RecentPosts.title}}</a>
+                                                </h3>
+                                            </header>
+
+                                        </article>
+                                        <!-- post -->
+                                        {% endfor %}
+
+
+
+
+
+                                    </div>
+                                    <!-- LATEST POSTS -->
+
+                                </div>
+                                <!-- .related-posts -->
+
+
+                            </article>
+                            <!-- .hentry -->
+
+
+
+
+
+
+
+
+                            <!-- #comments -->
+                            <div id="comments" class="comments-area">
+                                {% load static %}
+
+                                <h3 class="comments-title">Comments</h3>
+                                <!-- .commentlist -->
+                                <ol class="commentlist">
+
+                                    {% for comment in post.comments.all %}
+
+                                    <li class="comment even thread-even depth-1">
+
+                                        <!-- #comment-## -->
+                                        <article class="comment">
+
+                                            <!-- .comment-meta -->
+                                            <header class="comment-meta comment-author vcard">
+                                                <img alt="" src="{% static 'images/site/testo-01.jpg' %}" class="avatar" height="75" width="75">
+                                                <cite class="fn"><a href="#" rel="external nofollow" class="url">{{ comment.name }}</a></cite>
+                                                <span class="comment-date">{{ comment.date_added }}</span>
+                                            </header>
+                                            <!-- .comment-meta -->
+
+                                            <!-- .comment-content -->
+                                            <section class="comment-content comment">
+                                                <p>{{ comment.body }}</p>
+                                            </section>
+                                            <!-- .comment-content -->
+
+                                            <!-- .reply -->
+                                            <div class="reply">
+                                                <a class="comment-reply-link" href="#respond">Reply</a>
+                                            </div>
+                                            <!-- .reply -->
+
+                                        </article>
+                                        <!-- #comment-## -->
+
+
+
+
+                                        {% if comment.replay %}
+                                        <!-- .comment depth-2 -->
+                                        <ol class="children">
+
+
+                                            <li class="comment odd alt depth-2 bypostauthor">
+
+                                                <!-- #comment-## -->
+                                                <article class="comment">
+
+                                                    <!-- .comment-meta -->
+                                                    <header class="comment-meta comment-author vcard">
+                                                        <img alt="" src="{% static 'images/site/admin.jpg' %}" class="avatar photo" height="75" width="75">
+                                                        <cite class="fn"><a href="#" rel="external nofollow" class="url">Admin</a></cite>
+
+                                                    </header>
+                                                    <!-- .comment-meta -->
+
+                                                    <!-- .comment-content -->
+                                                    <section class="comment-content comment">
+                                                        <p>{{ comment.replay }}</p>
+                                                    </section>
+                                                    <!-- .comment-content -->
+
+                                                </article>
+                                                <!-- #comment-## -->
+
+
+
+                                            </li>
+                                        </ol>
+                                        <!-- .comment depth-2 -->
+                                        {% else %} {% endif %}
+
+
+
+
+                                    </li>
+
+                                    {% empty %}
+                                    <p class="comments-title">No comments yet!</p>
+                                    {% endfor %}
+
+
+
+
+
+
+
+
+
+                                </ol>
+                                <!-- .commentlist -->
+
+
+                                <!-- #respond -->
+                                <div id="respond" style="border: 0px solid #001428;">
+
+                                    <h3 id="reply-title">Leave a comment <small><a rel="nofollow" id="cancel-comment-reply-link"
+                                            href="#" style="display:none;">Cancel reply</a></small></h3>
+
+                                    <!-- .commentform -->
+                                    <form action="." method="post" id="commentform">
+                                        {% csrf_token %}
+
+                                        <p class="comment-form-comment">
+                                            <label for="comment">Comment</label> {{ form.body }}
+                                        </p>
+
+                                        <p class="comment-form-author">
+                                            <label for="author">Name <span class="required">*</span></label> {{ form.name }}
+                                        </p>
+
+                                        <p class="comment-form-email">
+                                            <label for="email">Email <span class="required">*</span></label> {{ form.email }}
+                                        </p>
+
+                                        <p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; </code></p>
+
+                                        <p class="form-submit">
+                                            <input type="submit" class="button primary" value="Post Comment">
+                                        </p>
+
+                                    </form>
+                                    <!-- .commentform -->
+
+                                </div>
+                                <!-- #respond -->
+
+                            </div>
+                            <!-- #comments -->
+
+
+                        </div>
+                        <!-- .blog-single -->
+
+
+                    </div>
+                    <!-- site-content -->
+
+                </div>
+                <!-- primary -->
+
+
+
+
+
+            </div>
+            <!-- layout -->
+
+
+        </div>
+        <!-- site-middle -->
+
+
+        <!-- .site-footer -->
+        <footer id="colophon" class="site-footer" role="contentinfo" style="background-color: #fff;">
+
+            <!-- .site-info -->
+            <div class="site-info" style="padding: 10px 0;">
+                <div class="textwidget">
+                    <p>{{Setting.copyright}}</p>
+                </div>
+            </div>
+            <!-- .site-info -->
+
+        </footer>
+        <!-- .site-footer -->
+    </main>
+    <!-- .site-main -->
+
+    <!-- ALERT : used for contact form mail delivery alert -->
+    <div class="site-alert animated"></div>
+</div>
+<!-- PAGE -->
+
+<a href="#" id="back-to-top" class="show">↑ <span>Scroll to top</span></a>
+
+<!-- Page  -->
+{% endblock content %}
+
+<!-- Social media Chat Button -->
+{% block chatbutton %} {{ ChatButton|safe }} {% endblock %}
+
+<!-- Coustom script -->
+{% block script %} {% for CustomScripts in CustomScript %} {% if CustomScripts.active == True %} {{CustomScripts.code}} {% endif %} {% endfor %} {% endblock %}

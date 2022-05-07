@@ -1,0 +1,269 @@
+{% extends 'layout.html' %}
+
+<!-- description -->
+{% block description %} {{Setting.description}} {% endblock %}
+
+<!-- keywords -->
+{% block keywords %} {{Setting.keywords}} {% endblock %}
+
+<!-- author -->
+{% block author %} {{Setting.author}} {% endblock %}
+
+<!-- title -->
+{% block title %} {{Setting.Website_title}} {% endblock %}
+
+<!-- shortcut_icon -->
+{% load static %} {% block shortcut_icon %} {{Setting.favicon.url}} {% endblock %}
+
+<!-- apple-touch-icon -->
+{% load static %} {% block apple-touch-icon %} {{Setting.favicon.url}} {% endblock %}
+
+<!-- coustom_style -->
+{% block css %} {% for CustomCodes in CustomCode %} {% if CustomCodes.active == True %} {{CustomCodes.code}} {% endif %} {% endfor %} {% endblock %}
+
+<!-- Content -->
+{% block content %}
+<!-- PAGE -->
+<div id="page" class="hfeed site">
+
+    <!-- .site-main -->
+    <main id="main" class="site-main cd-main">
+        {% load static %}
+
+
+        <!-- site-middle -->
+        <div class="site-middle">
+
+            <div class="layout-medium">
+                <div id="primary" class="content-area">
+
+                    <!-- site-content -->
+                    <div id="content" class="site-content" role="main">
+                        <!-- .page-single -->
+                        <div class="page-single page-layout">
+
+
+                            <!-- .hentry -->
+                            <article class="page hentry">
+
+                                <!-- .entry-header -->
+                                <header class="entry-header">
+                                    <h1 class="entry-title">About Me</h1>
+                                </header>
+                                <!-- .entry-header -->
+
+
+                                <!-- .entry-content -->
+                                <div class="entry-content">
+
+                                    <div class="boxed is-dark">
+                                        <div class="row">
+
+                                            <div class="col-sm-3">
+                                                <!-- <img src="{% static 'images/site/about.jpg' %}" alt="about image"> -->
+                                                <img src="{{AboutMe.profile_image.url}}" alt="about image">
+                                            </div>
+
+                                            <div class="col-sm-9">
+
+                                                <!-- <h2 class="fw-300">Hello, I am Jason Whallberg, a <strong>graphic
+                                                        designer</strong> based in LA. I can design beautiful <strong>type faces</strong> and
+                                                    <strong>user
+                                                      interfaces</strong> for both digital and print media and I love coffee.
+                                                </h2> -->
+                                                <p class="fw-300">
+                                                    {{AboutMe.about_content}}
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- SERVICES -->
+
+                                    <!-- section-title -->
+                                    <div class="section-title center">
+                                        <h2>
+                                            <i>services</i>
+                                        </h2>
+                                    </div>
+                                    <!-- section-title -->
+
+                                    <!-- row -->
+                                    <div class="row">
+
+
+                                        {% for Services in Service %}
+                                        <!-- col -->
+                                        <div class="col-sm-6 col-lg-3">
+
+                                            <!-- service -->
+                                            <div class="service">
+                                                <img src="{{Services.icon.url}}" alt="image" />
+                                                <h3>{{Services.service_name}}</h3>
+                                                <p>{{Services.service_detail}}</p>
+                                            </div>
+                                            <!-- service -->
+
+                                        </div>
+                                        <!-- col -->
+                                        {% endfor %}
+
+
+
+
+                                    </div>
+                                    <!-- row -->
+                                    <!-- SERVICES -->
+
+                                    <!-- PROCESS -->
+
+                                    <!-- section-title -->
+                                    <div class="section-title center">
+                                        <h2>
+                                            <i>work procces</i>
+                                        </h2>
+                                    </div>
+                                    <!-- section-title -->
+
+
+                                    <!-- row -->
+                                    <div class="row">
+
+
+                                        {% for workProcces in WorkProcces %}
+                                        <!-- col -->
+                                        <div class="col-xs-4 col-sm-2">
+                                            <!-- process -->
+                                            <div class="process">
+                                                <img src="{{workProcces.icon.url}}" alt="image" />
+                                                <h4>{{workProcces.procces_name}}</h4>
+                                            </div>
+                                            <!-- process -->
+                                        </div>
+                                        <!-- col -->
+                                        {% endfor %}
+
+
+
+                                    </div>
+                                    <!-- row -->
+                                    <!-- PROCESS -->
+
+                                    <!-- CLIENTS -->
+
+                                    <!-- section-title -->
+                                    <div class="section-title center">
+                                        <h2>
+                                            <i>Work With</i>
+                                        </h2>
+                                    </div>
+                                    <!-- section-title -->
+
+                                    <!-- row -->
+                                    <div class="row">
+
+                                        {% for WorkWiths in WorkWith %}
+                                        <!-- col -->
+                                        <div class="col-xs-6 col-sm-3">
+                                            <!-- client -->
+                                            <div class="client">
+                                                <a href="{{WorkWiths.link}}" target="_blank">
+                                                    <img src="{{WorkWiths.logo.url}}" alt="client">
+                                                </a>
+                                            </div>
+                                            <!-- client -->
+                                        </div>
+                                        <!-- col -->
+                                        {% endfor %}
+
+                                    </div>
+                                    <!-- row -->
+                                    <!-- CLIENTS -->
+
+                                    <!-- FUN FACT -->
+                                    <!-- section-title -->
+
+                                    <div class="section-title center">
+                                        <h2>
+                                            <i>achivement</i>
+                                        </h2>
+                                    </div>
+                                    <!-- section-title -->
+
+                                    <!-- row -->
+                                    <div class="row">
+
+
+
+
+                                        {% for Achivements in Achivement %}
+                                        <!-- col -->
+                                        <div class="col-xs-6 col-sm-3">
+
+                                            <!-- fun-fact -->
+                                            <div class="fun-fact">
+                                                <img src="{{Achivements.icon.url}}" alt="fun fact">
+                                                <h4>{{Achivements.detials}}</h4>
+                                            </div>
+                                            <!-- fun-fact -->
+
+                                        </div>
+                                        <!-- col -->
+                                        {% endfor %}
+
+
+
+                                    </div>
+                                    <!-- row -->
+                                    <!-- FUN FACT -->
+                                </div>
+                                <!-- .entry-content -->
+                            </article>
+                            <!-- .hentry -->
+                        </div>
+                        <!-- .page-single -->
+                    </div>
+                    <!-- site-content -->
+                </div>
+                <!-- primary -->
+            </div>
+            <!-- layout -->
+        </div>
+        <!-- site-middle -->
+
+        <!-- .site-footer -->
+        <footer id="colophon" class="site-footer" role="contentinfo">
+
+            <!-- .site-info -->
+            <div class="site-info">
+                <div class="textwidget">
+                    <p>{{Setting.copyright}}</p>
+                </div>
+            </div>
+            <!-- .site-info -->
+
+        </footer>
+        <!-- .site-footer -->
+
+    </main>
+    <!-- .site-main -->
+
+    <!-- ALERT : used for contact form mail delivery alert -->
+    <div class="site-alert animated"></div>
+
+</div>
+<!-- PAGE -->
+
+<a href="#" id="back-to-top" class="show">↑ <span>Scroll to top</span></a>
+
+<!-- End:Content -->
+
+{% endblock content %}
+
+<!-- Social media Chat Button -->
+{% block chatbutton %} {{ ChatButton|safe }} {% endblock %}
+
+<!-- Coustom script -->
+{% block script %} {% for CustomScripts in CustomScript %} {% if CustomScripts.active == True %} {{CustomScripts.code}} {% endif %} {% endfor %} {% endblock %}

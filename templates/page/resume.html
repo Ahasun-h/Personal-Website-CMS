@@ -1,0 +1,231 @@
+{% extends 'layout.html' %}
+
+<!-- description -->
+{% block description %} {{Setting.description}} {% endblock %}
+
+<!-- keywords -->
+{% block keywords %} {{Setting.keywords}} {% endblock %}
+
+<!-- author -->
+{% block author %} {{Setting.author}} {% endblock %}
+
+<!-- title -->
+{% block title %} {{Setting.Website_title}} {% endblock %}
+
+<!-- shortcut_icon -->
+{% load static %} {% block shortcut_icon %} {{Setting.favicon.url}} {% endblock %}
+
+<!-- apple-touch-icon -->
+{% load static %} {% block apple-touch-icon %} {{Setting.favicon.url}} {% endblock %}
+
+<!-- coustom_style -->
+{% block css %} {% for CustomCodes in CustomCode %} {% if CustomCodes.active == True %} {{CustomCodes.code}} {% endif %} {% endfor %} {% endblock %}
+
+<!-- Content -->
+{% block content %}
+
+<!-- PAGE -->
+<div id="page" class="hfeed site">
+
+    <!-- .site-main -->
+    <main id="main" class="site-main cd-main">
+        {% load static %}
+
+        <!-- site-middle -->
+        <div class="site-middle">
+
+            <div class="layout-medium">
+                <div id="primary" class="content-area">
+
+                    <!-- site-content -->
+                    <div id="content" class="site-content" role="main">
+                        <!-- .page-single -->
+                        <div class="page-single page-layout">
+
+                            <!-- .hentry -->
+                            <article class="page hentry">
+
+                                <!-- .entry-header -->
+                                <header class="entry-header">
+                                    <h1 class="entry-title">Resume</h1>
+                                </header>
+                                <!-- .entry-header -->
+
+                                <!-- .entry-content -->
+                                <div class="entry-content">
+
+                                    <!-- row -->
+                                    <div class="row">
+
+                                        <!-- col -->
+                                        <div class="col-sm-6 col-lg-7">
+
+                                            <!-- WORK HISTORY -->
+                                            <div class="event">
+                                                <h2>WORK HISTORY</h2>
+                                                <p>
+                                                    <i class="pw-icon-badge"></i>
+                                                    <!--<img src="images/site/icon-03.png" alt="image"/>-->
+                                                </p>
+                                            </div>
+
+
+                                            {% for WorkHistorys in WorkHistory %}
+                                            <div class="event">
+                                                <h3>{{WorkHistorys.starting}} - {{WorkHistorys.ending}}</h3>
+                                                <h4>{{WorkHistorys.designation}}</h4>
+                                                <h5>{{WorkHistorys.company_name}}</h5>
+                                                <p>{{WorkHistorys.content}}</p>
+                                            </div>
+                                            {% endfor %}
+
+
+
+
+
+                                            <!-- WORK HISTORY -->
+
+
+                                            <!-- EDUCATION -->
+                                            <div class="event">
+                                                <h2>EDUCATION</h2>
+                                                <p>
+                                                    <i class="pw-icon-education"></i>
+                                                    <!--<img src="images/site/icon-03.png" alt="image"/>-->
+                                                </p>
+                                            </div>
+
+
+                                            {% for Educations in Education %}
+                                            <div class="event">
+                                                <h3>{{Educations.starting}} - {{Educations.ending}}</h3>
+                                                <h4>{{Educations.subject}}</h4>
+                                                <h5>{{Educations.institute_name}}</h5>
+                                                <p>{{Educations.content}}</p>
+                                            </div>
+                                            {% endfor %}
+
+
+
+                                            <!-- EDUCATION -->
+                                            <p>
+                                                <a href="{{ CurriculumVitae.cv.url }} " class="button  primary" target="_blank">
+                                                    <i class="pw-icon-doc-alt"></i> Download CV
+                                                </a>
+                                            </p>
+
+                                        </div>
+                                        <!-- col -->
+
+                                        <!-- col -->
+                                        <div class="col-sm-6 col-lg-5">
+
+
+                                            <!-- section-title -->
+                                            <div class="section-title center">
+                                                <h2>
+                                                    <i>Skills</i>
+                                                </h2>
+                                            </div>
+                                            <!-- section-title -->
+
+
+                                            {% for Skills in Skill %}
+                                            <!-- .skill-unit -->
+                                            <div class="skill-unit">
+                                                <h4>{{Skills.platform_name}}</h4>
+                                                <div class="bar" data-percent="{{Skills.skill_percentage}}">
+                                                    <div class="progress"></div>
+                                                </div>
+                                            </div>
+                                            <!-- .skill-unit -->
+
+                                            {% endfor %}
+
+
+
+
+
+                                            <!-- section-title -->
+                                            <div class="section-title center">
+                                                <h2>
+                                                    <i>TESTIMONIALS</i>
+                                                </h2>
+                                            </div>
+                                            <!-- section-title -->
+
+
+                                            {% for Testimonials in Testimonial %}
+                                            <!-- Testimonial -->
+                                            <div class="testo">
+                                                <img src="{{Testimonials.clients_image.url}}" alt="{{Testimonials.clients_name}}">
+                                                <h3>{{Testimonials.clients_name}}</h3>
+                                                <h5>{{Testimonials.clients_designation}} / {{Testimonials.company_name}}</h5>
+                                                <p>{{Testimonials.detials}}</p>
+
+                                            </div>
+                                            <!-- Testimonial -->
+                                            {% endfor %}
+
+
+                                        </div>
+                                        <!-- col -->
+
+                                    </div>
+                                    <!-- row -->
+
+                                </div>
+                                <!-- .entry-content -->
+
+                            </article>
+                            <!-- .hentry -->
+
+                        </div>
+                        <!-- .page-single -->
+
+                    </div>
+                    <!-- site-content -->
+
+                </div>
+                <!-- primary -->
+
+            </div>
+            <!-- layout -->
+
+        </div>
+        <!-- site-middle -->
+
+        <!-- .site-footer -->
+        <footer id="colophon" class="site-footer" role="contentinfo">
+
+            <!-- .site-info -->
+            <div class="site-info">
+                <div class="textwidget">
+                    <p>{{Setting.copyright}}
+                    </p>
+                </div>
+            </div>
+            <!-- .site-info -->
+
+        </footer>
+        <!-- .site-footer -->
+
+    </main>
+    <!-- .site-main -->
+
+    <!-- ALERT : used for contact form mail delivery alert -->
+    <div class="site-alert animated"></div>
+
+</div>
+<!-- PAGE -->
+
+<a href="#" id="back-to-top" class="show">↑ <span>Scroll to top</span></a>
+<!-- END:CONTENT -->
+
+{% endblock content %}
+
+<!-- Social media Chat Button -->
+{% block chatbutton %} {{ ChatButton|safe }} {% endblock %}
+
+<!-- Coustom script -->
+{% block script %} {% for CustomScripts in CustomScript %} {% if CustomScripts.active == True %} {{CustomScripts.code}} {% endif %} {% endfor %} {% endblock %}
